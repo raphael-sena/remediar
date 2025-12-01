@@ -1,0 +1,210 @@
+version: "3.8"
+
+networks:
+  postgres-network:
+    driver: bridge
+
+services:
+  # 🔗 API Gateway
+  remediar-gateway:
+    container_name: remediar-gateway
+    build: ./remediar-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - TZ=America/Sao_Paulo
+      - JAVA_OPTS=-Duser.timezone=America/Sao_Paulo
+    depends_on:
+      - back-remediar
+      - notification-service
+      - pix-service
+    networks:
+      - postgres-network
+    env_file:
+      - .env
+
+  # 🔧 Microsserviço principal
+  back-remediar:
+    container_name: back-remediar
+    build: ./back-remediar
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_APPLICATION_JSON
+      - TZ=America/Sao_Paulo
+      - JAVA_OPTS=-Duser.timezone=America/Sao_Paulo
+    depends_on:
+      - db_remediar
+      - rabbitmq
+    networks:
+      - postgres-network
+    env_file:
+      - .env
+
+  # 🔔 Microsserviço de notificações
+  notification-service:
+    container_name: notification-service
+    build: ./notification-service
+    ports:
+      - "8082:8082"
+    environment:
+      - TZ=America/Sao_Paulo
+      - JAVA_OPTS=-Duser.timezone=America/Sao_Paulo
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      db_notification:
+        condition: service_started
+    networks:
+      - postgres-network
+    env_file:
+      - .env
+
+  pix-service:
+    build: ./pix-microservice      # ajuste para o path do seu projeto Pix
+    container_name: pix-service
+    ports:
+      - "8083:8083"               # expõe a porta 8082 interna na 8083 externa
+    environment:
+      - TZ=America/Sao_Paulo
+      - JAVA_OPTS=-Duser.timezone=America/Sao_Paulo
+    networks:
+      - postgres-network
+    env_file:
+      - .env
+    volumes:
+      - ./pix-microservice/src/main/resources/certs:/app/resources/certs
+
+
+  # 🗄️ Banco de dados do back-remediar
+  db_remediar:
+    image: postgres:latest
+    container_name: db_remediar
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: db_remediar
+    volumes:
+      - db_remediar_data:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+
+  # 🗄️ Banco de dados do notification-service
+  db_notification:
+    image: postgres:latest
+    container_name: db_notification
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: db_notification
+    volumes:
+      - db_notification_data:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+
+  db_pix:
+    image: postgres:16
+    container_name: db_pix
+    environment:
+      POSTGRES_DB: pixdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres-network
+
+  # 🗂️ Interface gráfica para gerenciar o PostgreSQL
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "15433:80"
+    environment:
+      - TZ=America/Sao_Paulo
+    env_file:
+      - .env
+    depends_on:
+      - db_remediar
+      - db_notification
+    networks:
+      - postgres-network
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+      - /usr/bin/pg_dump:/usr/bin/pg_dump:ro
+
+  # 📨 Broker de mensageria
+  rabbitmq:
+    image: rabbitmq:3.7.8-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+    networks:
+      - postgres-network
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # 🔴 Redis
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - postgres-network
+
+  # 🌐 Frontend Next.js
+  front-remediar:
+    container_name: front-remediar
+    build:
+      context: ../front-remediar
+      args:
+        - NEXT_PUBLIC_API_URL=https://ongremediar.com.br/api
+        - NEXT_PUBLIC_API_BASE_URL=https://ongremediar.com.br/api
+        - NEXT_PUBLIC_BASE_URL=https://ongremediar.com.br
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=America/Sao_Paulo
+      - NEXT_PUBLIC_API_URL=https://ongremediar.com.br/api
+      - NEXT_PUBLIC_API_BASE_URL=https://ongremediar.com.br/api
+      - NEXT_PUBLIC_BASE_URL=https://ongremediar.com.br
+    networks:
+      - postgres-network
+
+  # 🔀 Proxy reverso Nginx
+  nginx:
+    container_name: remediar-nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - TZ=America/Sao_Paulo
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - remediar-gateway
+      - front-remediar
+    networks:
+      - postgres-network
+
+volumes:
+  db_remediar_data:
+  db_notification_data:
+  redis_data:

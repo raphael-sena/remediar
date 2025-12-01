@@ -1,0 +1,30 @@
+server:
+  port: 8083
+
+cora:
+  mtls:
+    token-url:    https://matls-clients.api.cora.com.br/token
+    client-id:    ${CORA_CLIENT_ID}
+    cert-path:    ${CORA_CERT_PATH}
+    key-path:     ${CORA_KEY_PATH}
+  api:
+    invoices-url: ${CORA_INVOICES_URL:}
+
+spring:
+  datasource:
+    url:               jdbc:postgresql://db_pix:5432/pixdb
+    username:          ${POSTGRES_USER}
+    password:          ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# Configurações CORS - Permitindo todas as origens
+cors:
+  allowed-origins: "*"
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: "*"
+  allow-credentials: true
+  max-age: 3600

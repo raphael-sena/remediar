@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "*"  # Aceita qualquer origem
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+            maxAge: 3600
+
+      routes:
+        - id: pix-service
+          uri: http://pix-service:8083
+          predicates:
+            - Path=/api/pix/**
+          filters:
+            - StripPrefix=1
+          order: 1
+
+        - id: notification-service
+          uri: http://notification-service:8082
+          predicates:
+            - Path=/notification/**
+
+        - id: back-remediar
+          uri: http://back-remediar:8081
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+          order: 2
+
+        - id: fallback
+          uri: http://back-remediar:8081
+          predicates:
+            - Path=/**
+          order: 10
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG

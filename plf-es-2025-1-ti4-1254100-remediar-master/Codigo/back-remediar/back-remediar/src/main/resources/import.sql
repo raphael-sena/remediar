@@ -1,0 +1,1 @@
+-- INSERT INTO tb_medicamento(nome, data_validade, dosagem, lote, refrigerado, tarja, receita_obrigatoria) VALUES ('Dipirona', '03-24-2026', '40mg', 'lote 2', false, 'VERMELHA', false);

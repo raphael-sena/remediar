@@ -1,0 +1,1383 @@
+{
+	"info": {
+		"_postman_id": "e5990939-91ca-4ceb-a744-d8e1b9255114",
+		"name": "remediar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18370429",
+		"_collection_link": "https://dressmanager.postman.co/workspace/My-Workspace~202946ba-852b-4267-863c-bf36f542a725/collection/18370429-e5990939-91ca-4ceb-a744-d8e1b9255114?action=share&source=collection_link&creator=18370429"
+	},
+	"item": [
+		{
+			"name": "medicamento",
+			"item": [
+				{
+					"name": "findById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Dipirona\",\r\n    \"dataValidade\": \"2026-03-24\",\r\n    \"dosagem\": \"40mg\",\r\n    \"lote\": \"lote 2\",\r\n    \"refrigerado\": false,\r\n    \"tarja\": \"VERMELHA\",\r\n    \"receitaObrigatoria\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos/11435",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos",
+								"11435"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/medicamentos?size=1000&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "1000"
+								},
+								{
+									"key": "principioAtivo",
+									"value": "dipirona",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "principioAtivoOrNomeComercial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/medicamentos/pesquisar/principioAtivoOrNomeComercial/dipi?size=50&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos",
+								"pesquisar",
+								"principioAtivoOrNomeComercial",
+								"dipi"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "50"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllControlados",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Dipirona\",\r\n    \"dataValidade\": \"2026-03-24\",\r\n    \"dosagem\": \"40mg\",\r\n    \"lote\": \"lote 2\",\r\n    \"refrigerado\": false,\r\n    \"tarja\": \"VERMELHA\",\r\n    \"receitaObrigatoria\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeComercial\": \"Remédio Teste\",\r\n    \"principioAtivo\": \"Princípio Ativo\",\r\n    \"apresentacao\": \"10 MG/G + 0,443 MG/G CREM DERM CT BG AL X 40 G\",\r\n    \"codigoBarras\": \"1705600230032\",\r\n    \"laboratorio\": \"PUC Minas.\",\r\n    \"precoMaximo\": 0.09,\r\n    \"statusProduto\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeComercial\": \"Remédio Teste Atualizado\",\r\n    \"principioAtivo\": \"Princípio Ativo\",\r\n    \"apresentacao\": \"10 MG/G + 0,443 MG/G CREM DERM CT BG AL X 40 G\",\r\n    \"codigoBarras\": \"1705600230032\",\r\n    \"laboratorio\": \"PUC Minas.\",\r\n    \"precoMaximo\": 0.09\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos/25709",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos",
+								"25709"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Dipirona\",\r\n    \"dataValidade\": \"2026-03-24\",\r\n    \"dosagem\": \"40mg\",\r\n    \"lote\": \"lote 2\",\r\n    \"refrigerado\": false,\r\n    \"tarja\": \"VERMELHA\",\r\n    \"receitaObrigatoria\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuariosComum",
+			"item": [
+				{
+					"name": "createPJ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Loja LTDA\",\r\n  \"documento\": \"51234997000185\",\r\n  \"telefone\": \"11987654321\",\r\n  \"enderecoDTO\": {\r\n    \"rua\": \"Rua das Flores\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Casa\",\r\n    \"bairro\": \"Jardim das Acácias\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"estado\": \"SP\",\r\n    \"cep\": \"01234-567\"\r\n  },\r\n  \"userDTO\": {\r\n    \"login\": \"yancotaaa@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"role\": \"USER\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/pj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"pj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePJ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Loja LTDA Atualizada\",\r\n  \"documento\": \"51234997000185\",\r\n  \"telefone\": \"11987654321\",\r\n  \"endereco\": {\r\n    \"rua\": \"Rua das Flores\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Casa\",\r\n    \"bairro\": \"Jardim das Acácias\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"estado\": \"SP\",\r\n    \"cep\": \"01234-567\"\r\n  },\r\n  \"userDTO\": {\r\n    \"login\": \"yancotaaa@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"role\": \"USER\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "funcionario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Raphael Sena\",\r\n    \"cpf\": \"14434272683\",\r\n    \"telefone\": \"31997167755\",\r\n    \"genero\": \"MASCULINO\",\r\n    \"dataNascimento\": \"31/10/2000\",\r\n    \"endereco\": {\r\n        \"rua\": \"Rua Palermo\",\r\n        \"numero\": \"1460\",\r\n        \"complemento\": \"Casa\",\r\n        \"bairro\": \"Bandeirantes\",\r\n        \"cidade\": \"belo Horizonte\",\r\n        \"estado\": \"MG\",\r\n        \"cep\": \"31340-560\"\r\n    },\r\n    \"usuario\": {\r\n        \"login\": \"rsenares1@gmail.com\",\r\n        \"password\": \"1234\",\r\n        \"role\": \"FUNCIONARIO\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPF",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"nome\": \"Yan Cota\",\r\n        \"documento\": \"13705657631\",\r\n        \"telefone\": \"31997167755\",\r\n        \"endereco\": {\r\n            \"rua\": \"Rua Palermo\",\r\n            \"numero\": \"1460\",\r\n            \"complemento\": \"Casa\",\r\n            \"bairro\": \"Bandeirantes\",\r\n            \"cidade\": \"belo Horizonte\",\r\n            \"estado\": \"MG\",\r\n            \"cep\": \"31340-560\"\r\n        },\r\n        \"user\": {\r\n            \"login\": \"yancota@gmail.com\",\r\n            \"password\": \"1234\",\r\n            \"role\": \"USER\"\r\n        }\r\n    },\r\n  \"dataNascimento\": \"31/10/2000\",\r\n  \"escolaridade\": \"SUPERIOR_COMPLETO\",\r\n  \"qtdPessoasCasa\": 6,\r\n  \"rendaFamiliar\": 50000.00,\r\n  \"genero\": \"MASCULINO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/pf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"pf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePF",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"nome\": \"Raphael Sena Atualizado\",\r\n        \"documento\": \"14434272683\",\r\n        \"telefone\": \"31997167755\",\r\n        \"endereco\": {\r\n            \"rua\": \"Rua Palermo\",\r\n            \"numero\": \"1460\",\r\n            \"complemento\": \"Casa\",\r\n            \"bairro\": \"Bandeirantes\",\r\n            \"cidade\": \"belo Horizonte\",\r\n            \"estado\": \"MG\",\r\n            \"cep\": \"31340-560\"\r\n        },\r\n        \"user\": {\r\n            \"login\": \"rsenares1@gmail.com\",\r\n            \"password\": \"1234\",\r\n            \"role\": \"USER\"\r\n        }\r\n    },\r\n  \"dataNascimento\": \"31/10/2000\",\r\n  \"escolaridade\": \"SUPERIOR_COMPLETO\",\r\n  \"qtdPessoasCasa\": 6,\r\n  \"rendaFamiliar\": 50000.00,\r\n  \"genero\": \"MASCULINO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/pf/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"pf",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"rsenares1@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "funcionario",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Raphael Sena\",\r\n  \"cpf\": \"14434272683\",\r\n  \"telefone\": \"(11) 98765-4321\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"dataNascimento\": \"31/10/2000\",\r\n  \"endereco\": {\r\n    \"rua\": \"Rua das Flores\",\r\n    \"numero\": \"123\",\r\n    \"bairro\": \"Jardim das Acácias\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"estado\": \"SP\",\r\n    \"cep\": \"01234-567\"\r\n  },\r\n  \"usuario\": {\r\n    \"login\": \"raphael@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"ADMIN\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Maria Eduarda\",\r\n  \"cpf\": \"11248836650\",\r\n  \"telefone\": \"(11) 98765-4321\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"dataNascimento\": \"31/10/2000\",\r\n  \"endereco\": {\r\n    \"rua\": \"Rua das Flores\",\r\n    \"numero\": \"123\",\r\n    \"bairro\": \"Jardim das Acácias\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"estado\": \"SP\",\r\n    \"cep\": \"01234-567\"\r\n  },\r\n  \"usuario\": {\r\n    \"login\": \"maria@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"ADMIN\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "solicitação",
+			"item": [
+				{
+					"name": "usuario",
+					"item": [
+						{
+							"name": "pedido",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item\": {\r\n        \"nomeComercialOrPrincipioAtivo\": \"Dipirona\",\r\n        \"quantidade\": 1\r\n        },\r\n    \"usuarioId\": 1,\r\n    \"modoEntrega\": \"RETIRADA\",\r\n    \"prescricaoMedica\": {\r\n        \"dataEmissao\": \"10/04/2024\",\r\n        \"dispensada\": false,\r\n        \"imageUrl\": \"teste\",\r\n        \"usoContinuo\": true,\r\n        \"nomeMedico\": \"Humberto Brito\",\r\n        \"crmMedico\": \"CRM-123123\",\r\n        \"nomePaciente\": \"Raphael Sena Augusto de Brito\",\r\n        \"idadePaciente\": 24,\r\n        \"generoPaciente\": \"MASCULINO\",\r\n        \"cpfPaciente\": 14434272683,\r\n        \"contato\": 31997167755\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/solicitacoes/pedidos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"solicitacoes",
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doacao",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itens\": [\r\n        {\r\n            \"descricao\": \"Dipirona\",\r\n            \"quantidade\": 4,\r\n            \"dataValidade\": \"31/10/2026\",\r\n            \"imagem\": \" \"\r\n        }\r\n    ],\r\n    \"usuarioId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/solicitacoes/doacoes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"solicitacoes",
+										"doacoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "pedido",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item\": {\r\n        \"nomeComercialOrPrincipioAtivo\": \"Alprazolam\",\r\n        \"quantidade\": 2\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/solicitacoes/pedidos/98b77974-4a06-4c62-8ad7-867c7d5afc03",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"solicitacoes",
+										"pedidos",
+										"98b77974-4a06-4c62-8ad7-867c7d5afc03"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doacao",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itens\": [\r\n        {\r\n            \"item\": {\r\n                \"nomeComercialOrPrincipioAtivo\": \"Diazepam\",\r\n                \"quantidade\": 4\r\n            },\r\n            \"dataValidade\": \"31/10/2026\",\r\n            \"imagem\": \" \"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/solicitacoes/doacoes/a74ca0fd-b5e3-458b-8820-dfd3a1add94b/itens",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"solicitacoes",
+										"doacoes",
+										"a74ca0fd-b5e3-458b-8820-dfd3a1add94b",
+										"itens"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "findAllPedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pedidos?page=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllDoacoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/doacoes?page=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"doacoes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findSolicitacaoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/d5711a43-17e7-44f8-9b86-e0a332f557bc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"d5711a43-17e7-44f8-9b86-e0a332f557bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pedidos por autor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pesquisar/pedidos/autorId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pesquisar",
+								"pedidos",
+								"autorId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pedidos por status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pesquisar/pedidos/status/ALTERADA_PELO_USUARIO?page=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pesquisar",
+								"pedidos",
+								"status",
+								"ALTERADA_PELO_USUARIO"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doacao por status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pesquisar/doacoes/status/PENDENTE?page=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pesquisar",
+								"doacoes",
+								"status",
+								"PENDENTE"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doacoes por autor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pesquisar/doacoes/autorId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pesquisar",
+								"doacoes",
+								"autorId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "solicitacoes por funcionarioAtual",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pesquisar/funcionarioId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pesquisar",
+								"funcionarioId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "solicitacoes por funcionarioAtual e status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/pesquisar/funcionarioId/1/status/Aguardando Entrega",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"pesquisar",
+								"funcionarioId",
+								"1",
+								"status",
+								"Aguardando Entrega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "solicitacoes por funcionarioAtual Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/b0b42ede-57a6-46d4-978a-bacd258d80ee/funcionario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"b0b42ede-57a6-46d4-978a-bacd258d80ee",
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Aguardando Usuário\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/b0b42ede-57a6-46d4-978a-bacd258d80ee/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"b0b42ede-57a6-46d4-978a-bacd258d80ee",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assumir",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/d5711a43-17e7-44f8-9b86-e0a332f557bc/funcionario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"d5711a43-17e7-44f8-9b86-e0a332f557bc",
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterarPedido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/b0b42ede-57a6-46d4-978a-bacd258d80ee/confirmar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"b0b42ede-57a6-46d4-978a-bacd258d80ee",
+								"confirmar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirmar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/d22f43aa-c858-47d7-8f73-6b12dab5a235/confirmar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"d22f43aa-c858-47d7-8f73-6b12dab5a235",
+								"confirmar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/6a78e7ec-5286-4f9f-ae8f-338b5e4f5831/cancelar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"6a78e7ec-5286-4f9f-ae8f-338b5e4f5831",
+								"cancelar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "separar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/b0b42ede-57a6-46d4-978a-bacd258d80ee/separar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"b0b42ede-57a6-46d4-978a-bacd258d80ee",
+								"separar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pronto-para-retirada",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/d22f43aa-c858-47d7-8f73-6b12dab5a235/pronto-para-retirada",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"d22f43aa-c858-47d7-8f73-6b12dab5a235",
+								"pronto-para-retirada"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finalizar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"funcionarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/solicitacoes/b0b42ede-57a6-46d4-978a-bacd258d80ee/finalizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"solicitacoes",
+								"b0b42ede-57a6-46d4-978a-bacd258d80ee",
+								"finalizar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "estoque",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estoque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Estoque 1\",\r\n    \"endereco\": {\r\n        \"rua\": \"Rua Palermo\",\r\n        \"numero\": \"1460\",\r\n        \"complemento\": \"Casa\",\r\n        \"bairro\": \"Bandeirantes\",\r\n        \"cidade\": \"belo Horizonte\",\r\n        \"estado\": \"MG\",\r\n        \"cep\": \"31340-560\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estoque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findItemEstoque",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"produtoId\": 1,\r\n    \"dataValidade\": \"2025-04-13\",\r\n    \"quantidade\": 5,\r\n    \"estoqueId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/itens-estoque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itens-estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findItemEstoque Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"produtoId\": 1,\r\n    \"dataValidade\": \"2025-04-13\",\r\n    \"quantidade\": 5,\r\n    \"estoqueId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/itens-estoque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itens-estoque"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InJzZW5hcmVzMUBnbWFpbC5jb20iLCJyb2xlIjoiRlVOQ0lPTkFSSU8iLCJub21lIjoiUmFwaGFlbCBTZW5hIiwiaWQiOjIsImV4cCI6MTc0NTk5MDU1Nn0.BtoGznXfov6yRT9wr2wmTh6tDnOcAIewDKvl6MYlJt4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

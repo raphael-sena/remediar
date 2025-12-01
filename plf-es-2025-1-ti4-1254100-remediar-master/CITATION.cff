@@ -1,0 +1,33 @@
+cff-version: 1.0.1
+message: Software para solução automatizada para a ONG Remediar.
+title: Remediar
+authors:
+  - family-names: Augusto Silva Carvalho
+    given-names: André
+  - family-names: Matos Martins Fialho da Silva
+    given-names: Gabriel 
+  - family-names: Portela da Silva
+    given-names: Isaac
+  - family-names: Pedrosa do Carmo Nonato
+    given-names: Miguel
+  - family-names: Sena Augusto de Brito
+    given-names: Raphael
+  - family-names: Mariz Magalhães Cota
+    given-names: Yan 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Christina de Paiva Carvalho
+    given-names: Joyce 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Lúcia da Silva
+    given-names: Soraia
+keywords:
+  - ONG
+  - Remediar
+  - Doações
+  - Medicamentos
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2025-1-ti4-1254100-remediar
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2025-02-26
